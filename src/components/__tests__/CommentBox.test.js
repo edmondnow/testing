@@ -1,22 +1,27 @@
 import React from 'react';
 import { mount, unmount } from 'enzyme';
 import CommentBox from 'components/CommentBox';
+import Root from 'root';
 
 
 let wrapped;
 
 beforeEach(() => {
-  wrapped = mount(<CommentBox />)
+  wrapped = mount(
+    <Root>
+      <CommentBox />
+    </Root>
+    )
 });
 
 afterEach(() => {
   wrapped.unmount();
 });
 
-it('has a text area and a button', () => {
+it('has a text area and two buttons', () => {
 
   expect(wrapped.find('textarea').length).toEqual(1);
-  expect(wrapped.find('button').length).toEqual(1)
+  expect(wrapped.find('button').length).toEqual(2)
 });
 
 describe('the text area', () => {
